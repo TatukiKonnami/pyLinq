@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
-
 class Linq(list):
-
 
     def Where(self, where = None):
         wheres = Linq()
@@ -53,9 +50,7 @@ class Linq(list):
     
 
 
-# func=Noneのとき集合すべてを返す それ以外の時はlambda(無名関数)の引数にitemを入れたものを返すぞ
-def _act(func, item):
-    return item if func is None else func(item)
+
 
 
 # test
