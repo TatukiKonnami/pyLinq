@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 class Linq(list):
 
     def Where(self, where = None):
@@ -46,24 +47,33 @@ class Linq(list):
             if any(e):
                 return True
         return False
-
     
-
-
-
-
-
+    def First(self):
+        for e in self:
+            return e
+    
+    def Last(self):
+        isEmpty = True
+        for e in self:
+            last = e
+            isEmpty = False
+        if isEmpty:
+            SyntaxError("sequence empty")
+        else:
+            return last
+    
 # test
-linq1 = Linq([1])
+linq1 = Linq()
 linq2 = Linq([1, 1, 2, 3, 5])
 linq3 = Linq(['Hello', 'null', 'World'])
 linq4 = Linq([1, 1, 1, 1])
-print(linq1.Where(lambda x: x % 2 == 1))
+print(linq2.Where(lambda x: x % 2 == 1))
 print(linq2.Where(lambda x: x % 5 == 1))
 print(linq3.Where(lambda x: x != 'null'))
 print(linq2.Any(lambda x: x == 4 ))
 print(linq2.Skip(2)
            .Where(lambda x: x % 3 == 0))
+print(linq3.Last())
 
 
 
