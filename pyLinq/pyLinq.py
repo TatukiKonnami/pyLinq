@@ -1,20 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from collections import defaultdict
-from functools import reduce
-import itertools
+
 
 class Linq(list):
 
-    def Where(self, cond = None):
-        return Linq([
-            e for e in self
-            if cond is None or cond(e)])
-    
+
+    def Where(self, where = None):
+        wheres = Linq()
+        for e in self:
+            if where(e):
+                wheres.append(e)
+        return wheres
+
     def Select(self, select  = None):
-        return Linq([
-            _act(select, e) for e in self[:]])
+        selects = Linq()
+        for e in self:
+            selects.append(e)
+        return selects
 
     def Skip(self, skip):
         skips = Linq()
@@ -64,8 +67,9 @@ print(linq1.Where(lambda x: x % 2 == 1))
 print(linq2.Where(lambda x: x % 5 == 1))
 print(linq3.Where(lambda x: x != 'null'))
 print(linq2.Any(lambda x: x == 4 ))
-ans = linq2.Skip(2).Where(lambda x: x % 3 == 0)
-print(ans)
+print(linq2.Skip(2)
+           .Where(lambda x: x % 3 == 0))
+
 
 
 
